@@ -1,0 +1,22 @@
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+
+public class MulticastSender {
+    public static void main(String[] args) throws InterruptedException, IOException{
+        //pick multicast address within range 224.0.0.0 and 239.255.255.255
+        String group = "226.4.5.6";
+        //multicast socket binds to available port in localhost
+        MulticastSocket ms = new MulticastSocket();
+
+        String message = "Alea iacta est!";
+
+        //Create Datagram Packet to send
+        DatagramPacket dp = new DatagramPacket(message.getBytes(),message.length(), InetAddress.getByName(group),
+                5000);
+        ms.send(dp);
+
+        ms.close();
+    }
+}
