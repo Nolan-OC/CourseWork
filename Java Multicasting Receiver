@@ -1,0 +1,32 @@
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+
+public class MulticastReceiver {
+    public static void main(String[] args) throws IOException {
+
+        String group = "226.4.5.6";
+
+        //open multicast socket on specified port
+        MulticastSocket ms = new MulticastSocket(5000);
+        ms.joinGroup(InetAddress.getByName(group));
+
+        byte[] buf = new byte[1024];
+
+        //Constructs a datagram packet for receiving packet of length
+        DatagramPacket dp = new DatagramPacket(buf, 1024);
+
+        ms.receive(dp);
+        String str = new String(dp.getData(), 0, dp.getLength());
+
+        //print out info per assignment
+        System.out.println("message: " + str);
+        System.out.println("IP: " + dp.getAddress());
+        System.out.println("length: " + dp.getLength());
+
+        //leave group and close when message received
+        ms.leaveGroup(InetAddress.getByName(group));
+        ms.close();
+    }
+}
