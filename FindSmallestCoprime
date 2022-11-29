@@ -1,0 +1,18 @@
+#This tool will help you find the smallest coprimes (which is useful in cryptography assignments)
+
+from math import gcd        
+
+
+def check_co_prime(num, M):
+    return gcd(num, M) == 1 
+
+
+def get_smallest_co_prime(M):
+    for i in range(2, M): # for every number *i* starting from 2 up to M
+        if check_co_prime(i, M): # check if *i* is coprime with M
+            return i # if it is, return i as the result
+
+
+num = input("enter number to check\n"
+            "ie: 1689456639960\n")
+print(get_smallest_co_prime(int(num)))
