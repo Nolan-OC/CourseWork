@@ -1,0 +1,23 @@
+from tkinter import *
+
+# Create the root window
+root = Tk()
+
+# Create the label and set its initial text
+label = Label(root, text="Label text")
+label.pack()
+
+# Create the first button and set its text and command
+button1 = Button(root, text="Button 1", command=lambda: label.config(text="Button 1 was clicked!"))
+button1.pack()
+
+# Create the second button and set its text and command
+button2 = Button(root, text="Button 2", command=lambda: label.config(text="Button 2 was clicked!"))
+button2.pack()
+
+# Create the third button and set its text and command
+button3 = Button(root, text="Button 3", command=lambda: label.config(text="Button 3 was clicked!"))
+button3.pack()
+
+# Start the event loop
+root.mainloop()
